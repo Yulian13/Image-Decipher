@@ -1,0 +1,10 @@
+D:\Anime\Image-cipher\Image-cipher\bin\Debug\Image-cipher.exe.config
+D:\Anime\Image-cipher\Image-cipher\bin\Debug\Image-cipher.exe
+D:\Anime\Image-cipher\Image-cipher\bin\Debug\Image-cipher.pdb
+D:\Anime\Image-cipher\Image-cipher\obj\Debug\Image-cipher.csprojAssemblyReference.cache
+D:\Anime\Image-cipher\Image-cipher\obj\Debug\Image_cipher.Form1.resources
+D:\Anime\Image-cipher\Image-cipher\obj\Debug\Image_cipher.Properties.Resources.resources
+D:\Anime\Image-cipher\Image-cipher\obj\Debug\Image-cipher.csproj.GenerateResource.cache
+D:\Anime\Image-cipher\Image-cipher\obj\Debug\Image-cipher.csproj.CoreCompileInputs.cache
+D:\Anime\Image-cipher\Image-cipher\obj\Debug\Image-cipher.exe
+D:\Anime\Image-cipher\Image-cipher\obj\Debug\Image-cipher.pdb
