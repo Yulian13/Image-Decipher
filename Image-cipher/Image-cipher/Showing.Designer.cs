@@ -31,20 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Showing));
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonForward = new System.Windows.Forms.Button();
-            this.Console = new System.Windows.Forms.PictureBox();
+            this.PictureBoxImage = new System.Windows.Forms.PictureBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOriginalDeshifrovka = new System.Windows.Forms.ToolStripButton();
             this.ButtonZoomNormal = new System.Windows.Forms.ToolStripButton();
             this.LabelProgress = new System.Windows.Forms.ToolStripLabel();
             this.ProgressBarProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.LabelTest = new System.Windows.Forms.ToolStripLabel();
+            this.Console = new System.Windows.Forms.ToolStripSplitButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.LabelView = new System.Windows.Forms.ToolStripStatusLabel();
             this.ProgressBarView = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
-            ((System.ComponentModel.ISupportInitialize)(this.Console)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxImage)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -72,15 +72,16 @@
             this.buttonForward.UseVisualStyleBackColor = true;
             this.buttonForward.Click += new System.EventHandler(this.buttonForward_Click);
             // 
-            // Console
+            // PictureBoxImage
             // 
-            this.Console.Location = new System.Drawing.Point(3, 3);
-            this.Console.Name = "Console";
-            this.Console.Size = new System.Drawing.Size(859, 486);
-            this.Console.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Console.TabIndex = 2;
-            this.Console.TabStop = false;
-            this.Console.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Watching_MouseClick);
+            this.PictureBoxImage.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.PictureBoxImage.Location = new System.Drawing.Point(0, 0);
+            this.PictureBoxImage.Name = "PictureBoxImage";
+            this.PictureBoxImage.Size = new System.Drawing.Size(860, 500);
+            this.PictureBoxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxImage.TabIndex = 2;
+            this.PictureBoxImage.TabStop = false;
+            this.PictureBoxImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Watching_MouseClick);
             // 
             // toolStrip1
             // 
@@ -90,7 +91,7 @@
             this.LabelProgress,
             this.ProgressBarProgress,
             this.LabelTest,
-            this.toolStripSplitButton1});
+            this.Console});
             this.toolStrip1.Location = new System.Drawing.Point(30, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(860, 25);
@@ -135,6 +136,17 @@
             this.LabelTest.Text = "Label1";
             this.LabelTest.Visible = false;
             // 
+            // Console
+            // 
+            this.Console.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.Console.Image = ((System.Drawing.Image)(resources.GetObject("Console.Image")));
+            this.Console.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Console.Name = "Console";
+            this.Console.Size = new System.Drawing.Size(66, 22);
+            this.Console.Text = "Console";
+            this.Console.ButtonClick += new System.EventHandler(this.Console_ButtonClick);
+            this.Console.Click += new System.EventHandler(this.Console_ButtonClick);
+            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
@@ -145,7 +157,7 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.Console);
+            this.panel1.Controls.Add(this.PictureBoxImage);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(30, 25);
             this.panel1.Name = "panel1";
@@ -165,6 +177,7 @@
             // 
             // LabelView
             // 
+            this.LabelView.BackColor = System.Drawing.SystemColors.Control;
             this.LabelView.Margin = new System.Windows.Forms.Padding(350, 3, 0, 2);
             this.LabelView.Name = "LabelView";
             this.LabelView.Size = new System.Drawing.Size(86, 17);
@@ -175,19 +188,11 @@
             this.ProgressBarView.Name = "ProgressBarView";
             this.ProgressBarView.Size = new System.Drawing.Size(100, 16);
             // 
-            // toolStripSplitButton1
-            // 
-            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
-            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(66, 22);
-            this.toolStripSplitButton1.Text = "Console";
-            // 
             // Showing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ClientSize = new System.Drawing.Size(920, 550);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel1);
@@ -198,7 +203,7 @@
             this.Text = "Watching";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Watching_FormClosing);
             this.SizeChanged += new System.EventHandler(this.pictureBox1_SizeChanged);
-            ((System.ComponentModel.ISupportInitialize)(this.Console)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxImage)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -213,7 +218,7 @@
 
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Button buttonForward;
-        private System.Windows.Forms.PictureBox Console;
+        private System.Windows.Forms.PictureBox PictureBoxImage;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButtonOriginalDeshifrovka;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -225,6 +230,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel LabelView;
         private System.Windows.Forms.ToolStripProgressBar ProgressBarView;
-        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripSplitButton Console;
     }
 }

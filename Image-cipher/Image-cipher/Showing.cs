@@ -49,7 +49,7 @@ namespace Image_cipher
                 this.Text = Name;
             }
             NewImages = composition;
-            origenImage = composition;
+            origenImage = (Image[]) composition.Clone();
             ReadyPhotos = new bool[composition.Length];
 
             ProgressBarProgress.Maximum = ReadyPhotos.Length;
@@ -62,7 +62,7 @@ namespace Image_cipher
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            Image error = Console.ErrorImage;
+            Image error = PictureBoxImage.ErrorImage;
             for(int i = 0; i< NewImages.Length; i++)
             {
                 if (close) return; // Crutch
@@ -73,9 +73,10 @@ namespace Image_cipher
                 catch (Exception)
                 {
                     NewImages[i] = error;
+                    Librari.MessadgeToConsole(Console,$"failed to decipher image \"{i}\" ");
                 }
                 ReadyPhotos[i] = true;
-                backgroundWorker1.ReportProgress(++i);
+                backgroundWorker1.ReportProgress(i+1);
             }
 
         }
@@ -118,7 +119,7 @@ namespace Image_cipher
                 buttonBack_Click(null, null);
             else if (e.Button == MouseButtons.Left)
             {
-                if (e.Location.X < Console.Width / 2)
+                if (e.Location.X < PictureBoxImage.Width / 2)
                     buttonBack_Click(null, null);
                 else
                     buttonForward_Click(null, null);
@@ -135,13 +136,13 @@ namespace Image_cipher
                 int Width = panel1.Width - 20;
                 int Height = (int)(((double)image.Height / image.Width) * Width);
                 Size newSize = new Size(Width, Height);
-                Console.Image = new Bitmap(image, newSize);
-                Console.Size = new Size(newSize.Width, newSize.Height + statusStrip1.Height);
+                PictureBoxImage.Image = new Bitmap(image, newSize);
+                PictureBoxImage.Size = new Size(newSize.Width, newSize.Height + statusStrip1.Height);
             }
             else
             {
-                Console.Size = new Size(panel1.Width - 20, panel1.Height - 20);
-                Console.Image = image;
+                PictureBoxImage.Size = new Size(panel1.Width - 20, panel1.Height - 20);
+                PictureBoxImage.Image = image;
             }
         }
 
@@ -155,12 +156,14 @@ namespace Image_cipher
         private void ButtonZoomNormal_Click(object sender, EventArgs e)
         {
             NormalZoom = !NormalZoom;
-            Console.SizeMode = (NormalZoom) ? PictureBoxSizeMode.Normal : PictureBoxSizeMode.Zoom;
-            Console.Image = NewImages[NumberPhoto];
+            PictureBoxImage.SizeMode = (NormalZoom) ? PictureBoxSizeMode.Normal : PictureBoxSizeMode.Zoom;
+            PictureBoxImage.Image = NewImages[NumberPhoto];
             ButtonZoomNormal.Text = (NormalZoom) ? "Zoom" : "Normal";
             pictureBox1_SizeChanged(null, null);
         }
 
         private void Watching_FormClosing(object sender, FormClosingEventArgs e) => close = true;
+
+        private void Console_ButtonClick(object sender, EventArgs e) => Console.ForeColor = Color.Black;
     }
 }

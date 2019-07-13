@@ -146,18 +146,19 @@ namespace Image_cipher
             if (dataGridView1.SelectedRows.Count < 1)
                 return;
             int index = dataGridView1.SelectedRows[0].Index;
-            int number = Int32.Parse(dataGridView1[index, 2].Value.ToString());
-            string Name = dataGridView1[index, 1].Value.ToString();
+            int Id = Int32.Parse(dataGridView1[0, index].Value.ToString());
+            int number = Int32.Parse(dataGridView1[2, index].Value.ToString());
+            string Name = dataGridView1[1, index].Value.ToString();
             string[] keys = new string[number];
             Image[] images = new Image[number];
-            images[0] = (Image)dataGridView1[index, 3].Value;
-            keys[0] = dataGridView1[index, 4].Value.ToString();
+            images[0] = (Image)dataGridView1[3, index].Value;
+            keys[0] = dataGridView1[4, index].Value.ToString();
 
             for(int i = 1; i < number; i++)
             {
                 try
                 {
-                    keys[i] = new StreamReader(LabelPath.Text+$"\\{NameFolderKeys}\\{i}Key.txt").ReadToEnd();
+                    keys[i] = new StreamReader(LabelPath.Text+$"\\{Id}\\{NameFolderKeys}\\{i}Key.txt").ReadToEnd();
                 }
                 catch (Exception ex)
                 {
@@ -166,7 +167,7 @@ namespace Image_cipher
 
                 try
                 {
-                    images[i] = new Bitmap(LabelPath.Text + $"{i}image.jpg");
+                    images[i] = new Bitmap(LabelPath.Text + $"\\{Id}\\{i}image.jpg");
                 }
                 catch (Exception ex)
                 {
@@ -175,6 +176,8 @@ namespace Image_cipher
             }
 
             Showing showing = new Showing(images,keys,Name,Key);
+
+            showing.Show();
         }
     }
 }
