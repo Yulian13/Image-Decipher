@@ -133,7 +133,7 @@ namespace Image_cipher
             LabelView.Margin = new Padding((int)(toolStrip1.Width * 0.4), 3, 0, 2);
             if (NormalZoom)
             {
-                int Width = panel1.Width - 20;
+                int Width = panel1.Width - 17;
                 int Height = (int)(((double)image.Height / image.Width) * Width);
                 Size newSize = new Size(Width, Height);
                 PictureBoxImage.Image = new Bitmap(image, newSize);
@@ -141,7 +141,7 @@ namespace Image_cipher
             }
             else
             {
-                PictureBoxImage.Size = new Size(panel1.Width - 20, panel1.Height - 20);
+                PictureBoxImage.Size = new Size(panel1.Width - 0, panel1.Height - statusStrip1.Height);
                 PictureBoxImage.Image = image;
             }
         }
