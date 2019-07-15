@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace Image_cipher
+namespace Image_cipher.Forms
 {
     public partial class Form1 : Form
     {
@@ -32,7 +32,7 @@ namespace Image_cipher
             GetKey key = new GetKey();
             key.ShowDialog();
 
-            this.Key = key.maskedTextBox1.Text;
+            this.Key = new string(key.maskedTextBox1.Text.ToCharArray());
 
             if(sender != null && e != null)
             {
@@ -101,7 +101,7 @@ namespace Image_cipher
 
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void toolStripButtonTranslate_Click(object sender, EventArgs e)
         {
             foreach(DataGridViewRow row in dataGridView1.SelectedRows)
             {
@@ -178,6 +178,38 @@ namespace Image_cipher
             Showing showing = new Showing(images,keys,Name,Key);
 
             showing.Show();
+        }
+
+        private void chandeDecToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count < 1)
+                return;
+        }
+
+        private void changeName_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count < 1)
+                return;
+
+            int id = Int32.Parse(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            int index = dataGridView1.SelectedRows[0].Index;
+            string pathName = LabelPath.Text + $"\\{id}\\Text.txt";
+            string name = File.ReadAllText(pathName);
+            try
+            {
+                name = Librari.DeShifrovka(name, Key);
+            }
+            catch (Exception)
+            {
+                Librari.MessadgeToConsole(Console, "failed to decrypt Name");
+            }
+
+            EnterString enter = new EnterString(name);
+            if (enter.ShowDialog() != DialogResult.OK)
+                return;
+
+            File.WriteAllText(pathName,Librari.Shifrovka(enter.GetName,Key));
+            dataGridView1[1, index].Value = enter.GetName;
         }
     }
 }

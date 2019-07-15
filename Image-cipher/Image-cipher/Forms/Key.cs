@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Image_cipher
+namespace Image_cipher.Forms
 {
     public partial class GetKey : Form
     {

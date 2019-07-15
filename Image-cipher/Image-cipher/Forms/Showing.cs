@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Image_cipher.Forms;
 
-namespace Image_cipher
+namespace Image_cipher.Forms
 {
     public partial class Showing : Form
     {
@@ -38,7 +39,7 @@ namespace Image_cipher
         {
             InitializeComponent();
 
-            this.Key = Key;
+            this.Key = new string(Key.ToCharArray());
             RightKeys = rightKeys;
             try
             {
@@ -73,7 +74,7 @@ namespace Image_cipher
                 catch (Exception)
                 {
                     NewImages[i] = error;
-                    Librari.MessadgeToConsole(Console,$"failed to decipher image \"{i}\" ");
+                    backgroundWorker1.ReportProgress(i + NewImages.Length + 1);
                 }
                 ReadyPhotos[i] = true;
                 backgroundWorker1.ReportProgress(i+1);
@@ -85,8 +86,16 @@ namespace Image_cipher
         {
             if (close) return; // Crutch
 
-            LabelProgress.Text = $"{e.ProgressPercentage}/{NewImages.Length}";
-            ProgressBarProgress.Value++;
+            int i = e.ProgressPercentage;
+            if(i <= NewImages.Length)
+            {
+                LabelProgress.Text = $"{i}/{NewImages.Length}";
+                ProgressBarProgress.Value++;
+            }
+            else
+            {
+                Librari.MessadgeToConsole(Console,$"failed to decipher image \"{i-NewImages.Length-1}\" ");
+            }
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -162,7 +171,16 @@ namespace Image_cipher
             pictureBox1_SizeChanged(null, null);
         }
 
-        private void Watching_FormClosing(object sender, FormClosingEventArgs e) => close = true;
+        private void Watching_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            close = true;
+            for (int i = 0; i < NewImages.Length; i++)
+            {
+                NewImages[i].Dispose();
+                origenImage[i].Dispose();
+            }
+            this.Key = null;
+        }
 
         private void Console_ButtonClick(object sender, EventArgs e) => Console.ForeColor = Color.Black;
     }

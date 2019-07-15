@@ -1,4 +1,4 @@
-﻿namespace Image_cipher
+﻿namespace Image_cipher.Forms
 {
     partial class Form1
     {
@@ -30,12 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.ButtonChangeKey = new System.Windows.Forms.ToolStripButton();
+            this.Console = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripButtonTranslate = new System.Windows.Forms.ToolStripButton();
+            this.ButtonClear_console = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.LabelPath = new System.Windows.Forms.ToolStripLabel();
-            this.Console = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.ButtonClear_console = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +45,10 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonBrowse = new System.Windows.Forms.Button();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.chengeKey = new System.Windows.Forms.ToolStripMenuItem();
+            this.chandeDecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeName = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -54,9 +57,9 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ButtonChangeKey,
+            this.toolStripDropDownButton1,
             this.Console,
-            this.toolStripButton1,
+            this.toolStripButtonTranslate,
             this.ButtonClear_console,
             this.toolStripLabel1,
             this.LabelPath});
@@ -65,28 +68,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(662, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // ButtonChangeKey
-            // 
-            this.ButtonChangeKey.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.ButtonChangeKey.Image = ((System.Drawing.Image)(resources.GetObject("ButtonChangeKey.Image")));
-            this.ButtonChangeKey.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ButtonChangeKey.Name = "ButtonChangeKey";
-            this.ButtonChangeKey.Size = new System.Drawing.Size(73, 22);
-            this.ButtonChangeKey.Text = "Change key";
-            this.ButtonChangeKey.Click += new System.EventHandler(this.ButtonChangeKey_Click);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(34, 22);
-            this.toolStripLabel1.Text = "Path:";
-            // 
-            // LabelPath
-            // 
-            this.LabelPath.Name = "LabelPath";
-            this.LabelPath.Size = new System.Drawing.Size(31, 22);
-            this.LabelPath.Text = "path";
             // 
             // Console
             // 
@@ -99,17 +80,17 @@
             this.Console.ButtonClick += new System.EventHandler(this.Console_ButtonClick);
             this.Console.Click += new System.EventHandler(this.Console_ButtonClick);
             // 
-            // toolStripButton1
+            // toolStripButtonTranslate
             // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripButton1.Size = new System.Drawing.Size(58, 22);
-            this.toolStripButton1.Text = "Translate";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.toolStripButtonTranslate.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButtonTranslate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonTranslate.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonTranslate.Image")));
+            this.toolStripButtonTranslate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTranslate.Name = "toolStripButtonTranslate";
+            this.toolStripButtonTranslate.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.toolStripButtonTranslate.Size = new System.Drawing.Size(58, 22);
+            this.toolStripButtonTranslate.Text = "Translate";
+            this.toolStripButtonTranslate.Click += new System.EventHandler(this.toolStripButtonTranslate_Click);
             // 
             // ButtonClear_console
             // 
@@ -120,6 +101,18 @@
             this.ButtonClear_console.Size = new System.Drawing.Size(82, 22);
             this.ButtonClear_console.Text = "Clear console";
             this.ButtonClear_console.Click += new System.EventHandler(this.ButtonClear_console_Click);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(34, 22);
+            this.toolStripLabel1.Text = "Path:";
+            // 
+            // LabelPath
+            // 
+            this.LabelPath.Name = "LabelPath";
+            this.LabelPath.Size = new System.Drawing.Size(31, 22);
+            this.LabelPath.Text = "path";
             // 
             // dataGridView1
             // 
@@ -220,6 +213,40 @@
             this.buttonBrowse.UseVisualStyleBackColor = true;
             this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
             // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chengeKey,
+            this.changeName,
+            this.chandeDecToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(83, 22);
+            this.toolStripDropDownButton1.Text = "instruments";
+            // 
+            // chengeKey
+            // 
+            this.chengeKey.Name = "chengeKey";
+            this.chengeKey.Size = new System.Drawing.Size(226, 22);
+            this.chengeKey.Text = "Chenge key";
+            this.chengeKey.Click += new System.EventHandler(this.ButtonChangeKey_Click);
+            // 
+            // chandeDecToolStripMenuItem
+            // 
+            this.chandeDecToolStripMenuItem.Name = "chandeDecToolStripMenuItem";
+            this.chandeDecToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.chandeDecToolStripMenuItem.Text = "Chande Decryption key";
+            this.chandeDecToolStripMenuItem.Click += new System.EventHandler(this.chandeDecToolStripMenuItem_Click);
+            // 
+            // changeName
+            // 
+            this.changeName.Name = "changeName";
+            this.changeName.Size = new System.Drawing.Size(226, 22);
+            this.changeName.Text = "Change composition\'s name";
+            this.changeName.Click += new System.EventHandler(this.changeName_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,20 +274,23 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ToolStripButton ButtonChangeKey;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel LabelPath;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonOpen;
         private System.Windows.Forms.Button buttonBrowse;
         private System.Windows.Forms.ToolStripSplitButton Console;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonTranslate;
         private System.Windows.Forms.ToolStripButton ButtonClear_console;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewImageColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem chengeKey;
+        private System.Windows.Forms.ToolStripMenuItem chandeDecToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeName;
     }
 }
 

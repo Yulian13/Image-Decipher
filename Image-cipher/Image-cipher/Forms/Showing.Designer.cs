@@ -1,4 +1,4 @@
-﻿namespace Image_cipher
+﻿namespace Image_cipher.Forms
 {
     partial class Showing
     {
